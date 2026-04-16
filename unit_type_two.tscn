@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://mksa8eurc744"]
+
+[ext_resource type="PackedScene" uid="uid://5pl7shqvuyir" path="res://unit_type_one.tscn" id="1_kiv3e"]
+[ext_resource type="Texture2D" uid="uid://bgcb7qr4b75gw" path="res://art/spaceshooter/PNG/playerShip1_blue.png" id="2_8r1ky"]
+
+[node name="unitTypeTwo" instance=ExtResource("1_kiv3e")]
+speed = 75
+ranged_unit = true
+
+[node name="backSprite" parent="Body" index="0"]
+texture = ExtResource("2_8r1ky")
+
+[node name="Sprite2D" parent="Body" index="1"]
+texture = ExtResource("2_8r1ky")

@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://dd48a8th8oohc"]
+
+[ext_resource type="Script" path="res://enemy_type.gd" id="1_88es0"]
+[ext_resource type="Texture2D" uid="uid://ctfx66xckk0qq" path="res://art/spaceshooter/PNG/playerShip3_red.png" id="1_bnchu"]
+[ext_resource type="PackedScene" uid="uid://c1ixm0udm741b" path="res://laser.tscn" id="2_rru5m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_olf58"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uuroq"]
+radius = 20.025
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkvsu"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c2ofr"]
+bg_color = Color(0, 1, 0, 1)
+
+[node name="enemyTypeOne" type="CharacterBody2D"]
+scale = Vector2(0.7, 0.7)
+motion_mode = 1
+safe_margin = 5.0
+script = ExtResource("1_88es0")
+laser = ExtResource("2_rru5m")
+
+[node name="body" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="body"]
+texture_filter = 1
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_bnchu")
+
+[node name="ButtonAttackMe" type="Button" parent="body/Sprite2D"]
+clip_children = 2
+offset_left = -49.0
+offset_top = -43.0
+offset_right = 49.0
+offset_bottom = 43.0
+theme_type_variation = &"FlatButton"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_olf58")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_uuroq")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -21.0
+offset_top = -30.0
+offset_right = 21.0
+offset_bottom = -27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_bkvsu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c2ofr")
+max_value = 10.0
+value = 10.0
+show_percentage = false
+
+[node name="TimerShoot" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="TimerRemoveNav" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 25.0
+path_max_distance = 10.0
+path_postprocessing = 1
+avoidance_enabled = true
+debug_enabled = true
+
+[connection signal="pressed" from="body/Sprite2D/ButtonAttackMe" to="." method="_on_button_attack_me_pressed"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="TimerShoot" to="." method="_on_timer_shoot_timeout"]
+[connection signal="timeout" from="TimerRemoveNav" to="." method="_on_timer_remove_nav_timeout"]

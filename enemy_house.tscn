@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3exm68i31mac"]
+
+[ext_resource type="PackedScene" uid="uid://bf32uol8lb4q7" path="res://town_center.tscn" id="1_7cyte"]
+[ext_resource type="Script" path="res://enemy_building.gd" id="2_fjnsl"]
+[ext_resource type="Texture2D" uid="uid://be2d27akkeey3" path="res://art/scifi/PNG/Default size/Structure/scifiStructure_04.png" id="2_knhu6"]
+
+[node name="enemyHouse" groups=["enemy"] instance=ExtResource("1_7cyte")]
+script = ExtResource("2_fjnsl")
+
+[node name="Sprite2D" parent="buildingSprite" index="0"]
+texture = ExtResource("2_knhu6")
+
+[node name="ColorRect" type="ColorRect" parent="buildingSprite/Sprite2D" index="0"]
+offset_left = 10.0
+offset_top = -26.0
+offset_right = 18.0
+offset_bottom = 26.0
+color = Color(1, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="buildingSprite/Sprite2D" index="1"]
+offset_left = -18.0
+offset_top = -26.0
+offset_right = -9.0
+offset_bottom = 26.0
+color = Color(1, 0, 0, 1)
+
+[node name="TimerRemoveNav" type="Timer" parent="." index="9"]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="TimerRemoveNav" to="." method="_on_timer_remove_nav_timeout"]

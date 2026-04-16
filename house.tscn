@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://cg1ccymadcc1y"]
+
+[ext_resource type="PackedScene" uid="uid://bwxdanvirfb05" path="res://new_town_center.tscn" id="1_fuq4t"]
+[ext_resource type="Script" path="res://new_house.gd" id="2_ej2lo"]
+[ext_resource type="Texture2D" uid="uid://be2d27akkeey3" path="res://art/scifi/PNG/Default size/Structure/scifiStructure_04.png" id="2_gdf4b"]
+
+[node name="house" instance=ExtResource("1_fuq4t")]
+script = ExtResource("2_ej2lo")
+
+[node name="Sprite2D" parent="buildingSprite" index="0"]
+texture = ExtResource("2_gdf4b")
+
+[node name="addWorkerButton" parent="CanvasLayer" index="1"]
+visible = false

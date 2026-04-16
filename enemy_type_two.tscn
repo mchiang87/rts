@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://3sr0vf0xidiq"]
+
+[ext_resource type="PackedScene" uid="uid://dd48a8th8oohc" path="res://enemy_type_one.tscn" id="1_emre8"]
+[ext_resource type="Texture2D" uid="uid://ckpvwpg7w6ju6" path="res://art/spaceshooter/PNG/playerShip1_red.png" id="3_fdfj4"]
+
+[node name="enemyTypeTwo" instance=ExtResource("1_emre8")]
+is_ranged_unit = true
+
+[node name="Sprite2D" parent="body" index="0"]
+texture = ExtResource("3_fdfj4")

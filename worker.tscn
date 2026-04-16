@@ -1,0 +1,211 @@
+[gd_scene load_steps=12 format=3 uid="uid://cxqpyfb06td5g"]
+
+[ext_resource type="Script" path="res://worker.gd" id="1_67oai"]
+[ext_resource type="Texture2D" uid="uid://bqxwuykpbfe36" path="res://art/spaceshooter/PNG/playerShip2_blue.png" id="1_ecbja"]
+[ext_resource type="PackedScene" uid="uid://c1ixm0udm741b" path="res://laser.tscn" id="2_sc67v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ece4r"]
+radius = 14.0357
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xan54"]
+radius = 26.1725
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gle4b"]
+radius = 11.0454
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l2m0m"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6dwo1"]
+bg_color = Color(0, 0.887795, 0.407986, 1)
+
+[sub_resource type="Animation" id="Animation_3vxtv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2DTools:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2DTools/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2DTools/CollisionShape2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_c1tgk"]
+resource_name = "use_tools"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2DTools:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2DTools/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2DTools/CollisionShape2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2.6, 2.6), Vector2(2.6, 2.6)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l1vcn"]
+_data = {
+"RESET": SubResource("Animation_3vxtv"),
+"use_tools": SubResource("Animation_c1tgk")
+}
+
+[node name="Worker" type="CharacterBody2D"]
+z_index = 30
+collision_layer = 3
+collision_mask = 3
+motion_mode = 1
+safe_margin = 5.0
+script = ExtResource("1_67oai")
+laser = ExtResource("2_sc67v")
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="backSprite" type="Sprite2D" parent="Body"]
+visible = false
+clip_children = 2
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ecbja")
+
+[node name="ColorRect" type="ColorRect" parent="Body/backSprite"]
+offset_left = -56.0
+offset_top = -37.0
+offset_right = 56.0
+offset_bottom = 41.0
+color = Color(0, 0.941176, 0.968627, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Body"]
+rotation = 1.5708
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_ecbja")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 0)
+shape = SubResource("CircleShape2D_ece4r")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-4, 0)
+shape = SubResource("CircleShape2D_xan54")
+
+[node name="Area2DTools" type="Area2D" parent="." groups=["worker_tools"]]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DTools"]
+position = Vector2(-4, 0)
+shape = SubResource("CircleShape2D_gle4b")
+disabled = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -27.0
+offset_top = -33.0
+offset_right = 20.0
+offset_bottom = -30.0
+theme_override_styles/background = SubResource("StyleBoxFlat_l2m0m")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6dwo1")
+max_value = 10.0
+value = 10.0
+show_percentage = false
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 25.0
+path_max_distance = 10.0
+path_postprocessing = 1
+simplify_path = true
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="TimerIdleTooLong" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="TimerAttack" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l1vcn")
+}
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="TimerAttack" to="." method="_on_timer_attack_timeout"]

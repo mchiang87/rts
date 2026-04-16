@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://u2nt3tkg36xc"]
+
+[ext_resource type="PackedScene" uid="uid://d3exm68i31mac" path="res://enemy_house.tscn" id="1_vewyj"]
+[ext_resource type="Texture2D" uid="uid://b5y574xufa8im" path="res://art/scifi/PNG/Default size/Structure/scifiStructure_07.png" id="2_d17oq"]
+
+[node name="enemyTownCenter" instance=ExtResource("1_vewyj")]
+
+[node name="Sprite2D" parent="buildingSprite" index="0"]
+texture = ExtResource("2_d17oq")
+
+[node name="ColorRect" parent="buildingSprite/Sprite2D" index="0"]
+offset_left = 20.0
+offset_top = -10.0
+offset_right = 25.0
+offset_bottom = 6.0
+
+[node name="ColorRect2" parent="buildingSprite/Sprite2D" index="1"]
+offset_left = -25.0
+offset_top = -10.0
+offset_right = -20.0
+offset_bottom = 6.0

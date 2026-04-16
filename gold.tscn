@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpk3adnw07ow8"]
+
+[ext_resource type="PackedScene" uid="uid://dxkmd5flgrf4g" path="res://tree.tscn" id="1_6tv3l"]
+[ext_resource type="Texture2D" uid="uid://c0d6r0gkeovs0" path="res://art/scifi/PNG/Default size/Environment/scifiEnvironment_08.png" id="2_u6plk"]
+
+[node name="gold" instance=ExtResource("1_6tv3l")]
+tree = false
+gold = true
+
+[node name="Sprite2D" parent="Sprite" index="0"]
+visible = false
+
+[node name="Sprite2D2" parent="Sprite" index="1"]
+position = Vector2(-19, 17)
+scale = Vector2(1, 1)
+texture = ExtResource("2_u6plk")
+
+[node name="Sprite2D3" parent="Sprite" index="2"]
+position = Vector2(20, 17)
+scale = Vector2(1, 1)
+texture = ExtResource("2_u6plk")
+
+[node name="Sprite2D4" parent="Sprite" index="3"]
+position = Vector2(20, -23)
+scale = Vector2(1, 1)
+texture = ExtResource("2_u6plk")
+
+[node name="Sprite2D5" parent="Sprite" index="4"]
+position = Vector2(-20, -21)
+scale = Vector2(1, 1)
+texture = ExtResource("2_u6plk")

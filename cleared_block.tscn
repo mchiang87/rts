@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://4juflmw2frmw"]
+
+[ext_resource type="Texture2D" uid="uid://d0vk507jfusn1" path="res://art/scifi/PNG/Default size/Tile/scifiTile_13.png" id="1_rbn1v"]
+
+[node name="cleared_block" type="Sprite2D"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(32, 32)
+texture = ExtResource("1_rbn1v")

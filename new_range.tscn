@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://430wcn3ql75e"]
+
+[ext_resource type="PackedScene" uid="uid://bwxdanvirfb05" path="res://new_town_center.tscn" id="1_dshav"]
+[ext_resource type="Texture2D" uid="uid://bmpt3ydfp4xfn" path="res://art/scifi/PNG/Default size/Structure/scifiStructure_05.png" id="2_lkcyb"]
+[ext_resource type="PackedScene" uid="uid://mksa8eurc744" path="res://unit_type_two.tscn" id="2_nnkfx"]
+[ext_resource type="Texture2D" uid="uid://bgcb7qr4b75gw" path="res://art/spaceshooter/PNG/playerShip1_blue.png" id="3_url7w"]
+
+[node name="newRange" instance=ExtResource("1_dshav")]
+new_range_unit = ExtResource("2_nnkfx")
+is_tc = false
+is_range = true
+
+[node name="Sprite2D" parent="buildingSprite" index="0"]
+texture = ExtResource("2_lkcyb")
+
+[node name="Sprite2D" parent="CanvasLayer/addWorkerButton/image" index="2"]
+texture = ExtResource("3_url7w")
+
+[node name="Sprite2D" parent="CanvasLayer/q1/image" index="1"]
+texture = ExtResource("3_url7w")
+
+[node name="Sprite2D" parent="CanvasLayer/q2/image" index="1"]
+texture = ExtResource("3_url7w")
+
+[node name="Sprite2D" parent="CanvasLayer/q3/image" index="1"]
+texture = ExtResource("3_url7w")
+
+[node name="Sprite2D" parent="CanvasLayer/q4/image" index="1"]
+texture = ExtResource("3_url7w")
