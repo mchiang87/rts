@@ -24,8 +24,9 @@ offset_right = 40.0
 offset_bottom = 40.0
 theme_type_variation = &"FlatButton"
 
-[node name="image" parent="CanvasLayer/addWorkerButton" index="0"]
-visible = true
+[node name="ButtonPlace" parent="." index="10"]
+action_mode = 1
+button_mask = 1
 
 [node name="TimerShoot" type="Timer" parent="." index="12"]
 wait_time = 2.0

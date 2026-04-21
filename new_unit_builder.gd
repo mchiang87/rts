@@ -31,6 +31,13 @@ func _ready():
 	add_to_group('building')
 	var characters = 'abcdefghijklmnopqrstuvwxyz'
 	new_id = generate_id(characters, 10)
+	if is_tc == true:
+		Global.wood_count -= Global.tc_wood_cost
+		Global.gold_count -= Global.tc_gold_cost
+	if is_barracks == true:
+		Global.wood_count -= Global.barracks_wood_cost
+	if is_range == true:
+		Global.wood_count -= Global.range_wood_cost
 
 func _physics_process(delta):
 	if create == true:
@@ -205,14 +212,23 @@ func _on_area_entered(area):
 		area.queue_free()
 
 func _on_button_place_pressed():
-	if can_place == true:
-		if freeze_pos == false:
-			print('onclick')
-			add_to_group('unbuilt_building')
-			$ButtonPlace.visible = false
-			freeze_pos = true
-			Global.new_worker_target = position
-			Global.new_worker_target_type = "tile"
-			Global.new_worker_target_job = "build"
-			Global.new_worker_target_id = new_id
-			$TimerRemoveNav.start()
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		if can_place == true:
+			if freeze_pos == false:
+				add_to_group('unbuilt_building')
+				$ButtonPlace.visible = false
+				freeze_pos = true
+				Global.new_worker_target = position
+				Global.new_worker_target_type = "tile"
+				Global.new_worker_target_job = "build"
+				Global.new_worker_target_id = new_id
+				$TimerRemoveNav.start()
+	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		if is_tc == true:
+			Global.wood_count += Global.tc_wood_cost
+			Global.gold_count += Global.tc_gold_cost
+		if is_barracks == true:
+			Global.wood_count += Global.barracks_wood_cost
+		if is_range == true:
+			Global.wood_count += Global.range_wood_cost
+		queue_free()

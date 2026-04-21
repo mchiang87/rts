@@ -13,7 +13,7 @@ func _unhandled_input(event):
 				drag_start = get_global_mouse_position()
 				for item in selected:
 					if str(item.collider) != "<Freed Object>":
-						item.collider.turn_off_all_jobs()
+						#item.collider.turn_off_all_jobs()
 						item.collider.selected = false
 				selected = []
 			elif event.button_index == MOUSE_BUTTON_RIGHT:

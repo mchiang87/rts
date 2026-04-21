@@ -1,5 +1,18 @@
 extends Node
 
+const tc_gold_cost = 50
+const tc_wood_cost = 50
+
+const barracks_wood_cost = 50
+
+const range_wood_cost = 50
+
+const house_wood_cost = 50
+
+const farm_wood_cost = 50
+
+const tower_wood_cost = 50
+
 var add_nav_spot = PackedVector2Array()
 var add_to_no_nav_spot = PackedVector2Array()
 var units_selected = false
