@@ -1,6 +1,15 @@
 extends CharacterBody2D
 
+@onready var body = $Body
+@onready var backSprite = $Body/backSprite
+@onready var area2D = $Area2D
+@onready var animationPlayer = $AnimationPlayer
+#@onready var navigationAgent = $NavigationAgent2D
+@onready var timerIdle = $TimerIdleTooLong
+@onready var timerAttack = $TimerAttack
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
+@onready var progressBar = $ProgressBar
+
 @export var speed = 150
 @export var laser: PackedScene
 
@@ -35,11 +44,11 @@ var target = null:
 func set_selected(value):
 	selected = value
 	if selected == true:
-		$Body/backSprite.visible = true
+		backSprite.visible = true
 		Global.units_selected = true
 		Global.workers_selected = true
 	else:
-		$Body/backSprite.visible = false
+		backSprite.visible = false
 		Global.units_selected = false
 		Global.workers_selected = false
 
@@ -48,7 +57,7 @@ func set_target(value):
 
 func avoid():
 	var result = Vector2.ZERO
-	var neighbors = $Area2D.get_overlapping_bodies()
+	var neighbors = area2D.get_overlapping_bodies()
 	if neighbors:
 		for neighbor in neighbors:
 			result += neighbor.position.direction_to(position)
@@ -86,7 +95,7 @@ func _ready():
 	Global.population_count += 1
 	
 	var characters = 'abcdefghijklmnopqrstuvwxyz'
-	new_id = generate_id(characters, 10)
+	new_id = Global.generate_id(characters, 10)
 	add_to_group("unit")
 
 func _physics_process(delta):
@@ -151,15 +160,15 @@ func _physics_process(delta):
 	
 	if using_worker_tools == true:
 		speed = 0
-		$AnimationPlayer.play("use_tools")
-		await $AnimationPlayer.animation_finished
+		animationPlayer.play("use_tools")
+		await animationPlayer.animation_finished
 		if job_cutting_wood == true or job_mining_gold == true or job_farming_farm == true:
 			find_closest_drop_off_spot()
 			find_closest_side_of_tile()
 			using_worker_tools = false
 		speed = 150
 	
-	if (job_cutting_wood == true or job_mining_gold == true or job_farming_farm == true or job_building == true) and $TimerIdleTooLong.time_left == 0 and velocity == Vector2(0, 0) and target == null:
+	if (job_cutting_wood == true or job_mining_gold == true or job_farming_farm == true or job_building == true) and timerIdle.time_left == 0 and velocity == Vector2(0, 0) and target == null:
 		using_worker_tools = false
 		find_closest_target_for_job()
 		reset_stand_still_time() #refactor to reset_idle_timer()
@@ -167,20 +176,20 @@ func _physics_process(delta):
 	check_if_no_more_resources_for_job()
 
 	if velocity != Vector2(0, 0):
-		$Body.look_at($NavigationAgent2D.get_next_path_position())
+		body.look_at(nav_agent.get_next_path_position())
 
 	if job_attack == true and target != null:
 		var distance_to_enemy = (target - global_position).length()
 		if distance_to_enemy <= 70:
-			$Body.look_at(target_middle_of_enemy)
+			body.look_at(target_middle_of_enemy)
 			speed = 0
 			if able_to_shoot == true:
 				able_to_shoot = false
-				$TimerAttack.start()
+				timerAttack.start()
 				var new_laser = laser.instantiate()
 				new_laser.is_good_laser = true
 				add_sibling(new_laser)
-				new_laser.position = $Body.global_position
+				new_laser.position = body.global_position
 				new_laser.look_at(target_middle_of_enemy)
 				new_laser.owners_id = new_id
 			var all_enemies = get_tree().get_nodes_in_group("enemy")
@@ -213,7 +222,7 @@ func _physics_process(delta):
 				turn_off_all_jobs()
 			speed = 150
 			
-	$ProgressBar.value = health
+	progressBar.value = health
 	if health <= 0:
 		Global.enemy_units -= 1
 		Global.population_count -= 1
@@ -236,20 +245,20 @@ func find_closest_side_of_tile():
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("unbuilt_building") and job_building == true and area.new_id == target_id:
 		using_worker_tools = true
-		$Body.look_at(area.position)
+		body.look_at(area.position)
 	if area.is_in_group("built_building") and job_building == true:
 		using_worker_tools = false
 		find_closest_target_for_job()
 		reset_stand_still_time()
 	if area.is_in_group("tree") and job_cutting_wood == true and area.new_id == target_id:
 		using_worker_tools = true
-		$Body.look_at(area.position)
+		body.look_at(area.position)
 	if area.is_in_group("gold") and job_mining_gold == true and area.new_id == target_id:
 		using_worker_tools = true
-		$Body.look_at(area.position)
+		body.look_at(area.position)
 	if area.is_in_group("farm") and job_farming_farm == true and area.new_id == target_id:
 		using_worker_tools = true
-		$Body.look_at(area.position)
+		body.look_at(area.position)
 	if area.is_in_group("town_center") and (job_farming_farm == true or job_cutting_wood == true or job_mining_gold == true):
 		Global.wood_count += wood_gathered
 		Global.gold_count += gold_gathered
@@ -258,7 +267,7 @@ func _on_area_2d_area_entered(area):
 		wood_gathered = 0
 		gold_gathered = 0
 		food_gathered = 0
-		$Body.look_at(area.position)
+		body.look_at(area.position)
 		go_back_to_the_resources()
 	
 	if area.is_in_group("enemy_laser"):
@@ -268,7 +277,7 @@ func _on_area_2d_area_entered(area):
 			job_attack = true
 			job_attack_unit = true
 			target_id = area.owners_id
-			$Body.look_at(area.position)
+			body.look_at(area.position)
 			var all_enemies = get_tree().get_nodes_in_group("enemy")
 			for enemy in all_enemies:
 				if enemy.new_id == target_id:
@@ -277,7 +286,7 @@ func _on_area_2d_area_entered(area):
 		area.queue_free()
 
 func reset_stand_still_time():
-	$TimerIdleTooLong.start()
+	timerIdle.start()
 
 func find_closest_target_for_job():
 	var lowest_distance = INF
@@ -365,10 +374,3 @@ func check_if_no_more_resources_for_job():
 
 func _on_timer_attack_timeout():
 	able_to_shoot = true
-
-func generate_id(chars, length):
-	var word: String
-	var n_char = len(chars)
-	for i in range(length):
-		word += chars[randi() % n_char]
-	return word

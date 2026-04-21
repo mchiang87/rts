@@ -60,3 +60,10 @@ func reset_all_var():
 	new_worker_target_id = null
 	enemy_units = 0
 	friendly_units = 0
+
+func generate_id(chars, length):
+	var word: String
+	var n_char = len(chars)
+	for i in range(length):
+		word += chars[randi() % n_char]
+	return word

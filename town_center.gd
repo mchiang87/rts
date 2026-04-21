@@ -53,7 +53,7 @@ func _ready():
 	add_to_group("town_center")
 	
 	var characters = "abcdefghijklmnopqrstuvwxyz"
-	new_id = generate_id(characters, 10)
+	new_id = Global.generate_id(characters, 10)
 	add_to_group("unit")
 
 func _physics_process(delta):
@@ -104,13 +104,6 @@ func _physics_process(delta):
 		$CanvasLayer/q2.visible = true
 		$CanvasLayer/q3.visible = true
 		$CanvasLayer/q4.visible = true
-
-func generate_id(chars, length):
-	var word: String
-	var n_char = len(chars)
-	for i in range(length):
-		word += chars[randi() % n_char]
-	return word
 
 func _on_button_remove_pressed():
 	health -= 10

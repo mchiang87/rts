@@ -78,7 +78,7 @@ func _ready():
 	Global.population_count += 1
 	
 	var characters = 'abcdefghijklmnopqrstuvwxyz'
-	new_id = generate_id(characters, 10)
+	new_id = Global.generate_id(characters, 10)
 	add_to_group("unit")
 	
 	if ranged_unit == true:
@@ -207,10 +207,3 @@ func turn_off_all_jobs():
 
 func _on_timer_attack_timeout():
 	able_to_shoot = true
-
-func generate_id(chars, length):
-	var word: String
-	var n_char = len(chars)
-	for i in range(length):
-		word += chars[randi() % n_char]
-	return word

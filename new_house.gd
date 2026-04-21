@@ -23,7 +23,7 @@ var new_id = null
 func _ready():
 	add_to_group('building')
 	var characters = 'abcdefghijklmnopqrstuvwxyz'
-	new_id = generate_id(characters, 10)
+	new_id = Global.generate_id(characters, 10)
 	Global.wood_count -= Global.house_wood_cost
 
 func _physics_process(delta):
@@ -101,13 +101,6 @@ func _physics_process(delta):
 			#$ButtonBuildMe.queue_free()
 			create = true
 			fully_built_val += 1
-
-func generate_id(chars, length):
-	var word: String
-	var n_char = len(chars)
-	for i in range(length):
-		word += chars[randi() % n_char]
-	return word
 
 func _on_button_remove_pressed():
 	health -= 10

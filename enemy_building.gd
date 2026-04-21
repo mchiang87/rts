@@ -48,7 +48,7 @@ func _ready():
 	create = true
 	
 	var characters = "abcdefghijklmnopqrstuvwxyz"
-	new_id = generate_id(characters, 10)
+	new_id = Global.generate_id(characters, 10)
 
 func _physics_process(delta):
 	if create == true:
@@ -64,13 +64,6 @@ func _physics_process(delta):
 		$ButtonTC.visible = true
 	if Global.units_selected == false and health > 0:
 		$ButtonTC.visible = false
-
-func generate_id(chars, length):
-	var word: String
-	var n_char = len(chars)
-	for i in range(length):
-		word += chars[randi() % n_char]
-	return word
 
 func _on_button_remove_pressed():
 	health -= 10

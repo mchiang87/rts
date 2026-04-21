@@ -24,6 +24,12 @@ offset_right = 40.0
 offset_bottom = 40.0
 theme_type_variation = &"FlatButton"
 
+[node name="ButtonRemove" parent="CanvasLayer/removeButton/image" index="1"]
+visible = true
+
+[node name="addWorkerButton" parent="CanvasLayer" index="1"]
+self_modulate = Color(1, 1, 1, 1)
+
 [node name="ButtonPlace" parent="." index="10"]
 action_mode = 1
 button_mask = 1

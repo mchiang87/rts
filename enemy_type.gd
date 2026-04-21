@@ -66,7 +66,7 @@ func _ready():
 	Global.enemy_units += 1
 	add_to_group('enemy')
 	var characters = 'abcdefghijklmnopqrstuvwxyz'
-	new_id = generate_id(characters, 10)
+	new_id = Global.generate_id(characters, 10)
 	if is_ranged_unit == true:
 		attack_range = 150
 		unit_speed = 75
@@ -106,13 +106,6 @@ func _process(delta):
 				unit_exists = true
 		if unit_exists == false:
 			target_id = null
-
-func generate_id(chars, length):
-	var word: String
-	var n_char = len(chars)
-	for i in range(length):
-		word += chars[randi() % n_char]
-	return word
 
 func _on_timer_shoot_timeout():
 	able_to_shoot = true

@@ -12,7 +12,6 @@ var cam_move_down = false
 func _ready():
 	pass # Replace with function body.
 
-
 func _process(delta):
 	if get_local_mouse_position().x > 540: #screen size
 		cam_move_right = true
