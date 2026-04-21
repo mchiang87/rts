@@ -49,16 +49,16 @@ func _physics_process(delta):
 			removed_collision = true
 	$ProgressBar.value = health
 	
-	if Global.workers_selected == true or Global.building_selected == true:
+	if Global.units_selected == true or Global.building_selected == true:
 		$CanvasLayer.visible = false
 		$ButtonTC.visible = false
-		if freeze_pos == true and fully_built == false:
-			$ButtonBuildMe.visible = true
+		#if freeze_pos == true and fully_built == false:
+			#$ButtonBuildMe.visible = true
 	
-	if Global.workers_selected == false:
+	if Global.units_selected == false:
 		$ButtonTC.visible = true
-		if freeze_pos == true and fully_built == false:
-			$ButtonBuildMe.visible = false
+		#if freeze_pos == true and fully_built == false:
+			#$ButtonBuildMe.visible = false
 		if fully_built == false:
 			$CanvasLayer/addWorkerButton.visible = false
 		else:
@@ -142,7 +142,7 @@ func _physics_process(delta):
 			add_to_group('built_building')
 			if is_tc == true:
 				add_to_group('town_center')
-			$ButtonBuildMe.queue_free()
+			#$ButtonBuildMe.queue_free()
 			create = true
 			fully_built_val += 1
 
@@ -180,13 +180,6 @@ func _on_timer_worker_timeout():
 	if units_in_queue > 0 and Global.population_count < Global.max_population_count:
 		$TimerWorker.start()
 
-func _on_button_build_me_pressed():
-	Global.new_worker_target = position
-	Global.new_worker_target_type = "tile"
-	Global.new_worker_target_job = "build"
-	Global.new_worker_target_id = new_id
-	$TimerRemoveNav.start()
-
 func _on_timer_remove_nav_timeout():
 	Global.new_worker_target = null
 	Global.new_worker_target_type = null
@@ -214,6 +207,12 @@ func _on_area_entered(area):
 func _on_button_place_pressed():
 	if can_place == true:
 		if freeze_pos == false:
+			print('onclick')
 			add_to_group('unbuilt_building')
 			$ButtonPlace.visible = false
 			freeze_pos = true
+			Global.new_worker_target = position
+			Global.new_worker_target_type = "tile"
+			Global.new_worker_target_job = "build"
+			Global.new_worker_target_id = new_id
+			$TimerRemoveNav.start()

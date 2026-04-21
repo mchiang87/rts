@@ -45,7 +45,7 @@ texture_filter = 1
 position = Vector2(-27, 0)
 texture = ExtResource("3_s2070")
 
-[node name="CanvasLayer" parent="." index="9"]
+[node name="CanvasLayer" parent="." index="8"]
 visible = true
 
 [node name="addWorkerButton" parent="CanvasLayer" index="1"]

@@ -126,7 +126,7 @@ func _on_area_2d_area_entered(area):
 		area.queue_free()
 
 func _on_button_attack_me_pressed():
-	if Global.workers_selected == true:
+	if Global.units_selected == true:
 		Global.new_worker_target = position
 		Global.new_worker_target_job = 'attack_unit'
 		Global.new_worker_target_id = new_id

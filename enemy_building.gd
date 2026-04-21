@@ -60,9 +60,9 @@ func _physics_process(delta):
 			queue_free()
 			removed_collision = true
 	$ProgressBar.value = health
-	if Global.workers_selected == true and health > 0:
+	if Global.units_selected == true and health > 0:
 		$ButtonTC.visible = true
-	if Global.workers_selected == false and health > 0:
+	if Global.units_selected == false and health > 0:
 		$ButtonTC.visible = false
 
 func generate_id(chars, length):
@@ -76,7 +76,7 @@ func _on_button_remove_pressed():
 	health -= 10
 
 func _on_button_tc_pressed():
-	if Global.workers_selected == true:
+	if Global.units_selected == true:
 		Global.new_worker_target = position
 		Global.new_worker_target_job = 'attack_building'
 		Global.new_worker_target_id = new_id

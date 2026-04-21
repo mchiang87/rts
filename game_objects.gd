@@ -6,18 +6,23 @@ var select_rect = RectangleShape2D.new()
 var selected = []
 
 func _unhandled_input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+	if event is InputEventMouseButton:
 		if event.pressed:
-			if selected.size() == 0:
+			if event.button_index == MOUSE_BUTTON_LEFT:
 				dragging = true
 				drag_start = get_global_mouse_position()
-			else:
+				for item in selected:
+					if str(item.collider) != "<Freed Object>":
+						item.collider.turn_off_all_jobs()
+						item.collider.selected = false
+				selected = []
+			elif event.button_index == MOUSE_BUTTON_RIGHT:
 				for item in selected:
 					if str(item.collider) != "<Freed Object>":
 						item.collider.target = get_global_mouse_position()
 						item.collider.turn_off_all_jobs()
-						item.collider.selected = false
-				selected = []
+						#item.collider.selected = false
+				#selected = []
 		elif dragging == true:
 			dragging = false
 			queue_redraw()
@@ -40,5 +45,5 @@ func _draw():
 		draw_rect(Rect2(drag_start, get_global_mouse_position() - drag_start), Color.WHITE, false, 4.0)
 
 func _process(delta):
-	if Global.workers_selected == false:
+	if Global.units_selected == false:
 		selected = []

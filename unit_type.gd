@@ -30,10 +30,10 @@ func set_selected(value):
 	selected = value
 	if selected == true:
 		$Body/backSprite.visible = true
-		Global.workers_selected = true
+		Global.units_selected = true
 	else:
 		$Body/backSprite.visible = false
-		Global.workers_selected = false
+		Global.units_selected = false
 
 func set_target(value):
 	target = value
@@ -103,7 +103,7 @@ func _physics_process(delta):
 			target_id = Global.new_worker_target_id
 		if Global.new_worker_target_type == "tile":
 			find_closest_side_of_tile()
-		selected = false
+		#selected = false
 
 	if velocity != Vector2(0, 0):
 		$Body.look_at($NavigationAgent2D.get_next_path_position())

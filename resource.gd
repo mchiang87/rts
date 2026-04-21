@@ -67,9 +67,9 @@ func _physics_process(delta):
 			queue_free()
 			removed_collision = true
 	
-	if Global.workers_selected == true:
+	if Global.units_selected == true:
 		$ButtonSelect.visible = true
-	if Global.workers_selected == false:
+	if Global.units_selected == false:
 		$ButtonSelect.visible = false
 	
 	if resource_count <= 0:

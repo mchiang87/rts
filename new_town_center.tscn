@@ -17,24 +17,16 @@ disabled = true
 [node name="ProgressBar" parent="." index="4"]
 visible = false
 
-[node name="ButtonBuildMe" type="Button" parent="." index="6"]
+[node name="ButtonPlace" type="Button" parent="." index="9"]
 offset_left = -40.0
 offset_top = -40.0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_type_variation = &"FlatButton"
 
-[node name="ButtonPlace" type="Button" parent="." index="10"]
-offset_left = -40.0
-offset_top = -40.0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_type_variation = &"FlatButton"
-
-[node name="TimerRemoveNav" type="Timer" parent="." index="11"]
+[node name="TimerRemoveNav" type="Timer" parent="." index="10"]
 wait_time = 0.2
 one_shot = true
 
-[connection signal="pressed" from="ButtonBuildMe" to="." method="_on_button_build_me_pressed"]
 [connection signal="pressed" from="ButtonPlace" to="." method="_on_button_place_pressed"]
 [connection signal="timeout" from="TimerRemoveNav" to="." method="_on_timer_remove_nav_timeout"]

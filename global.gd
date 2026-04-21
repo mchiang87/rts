@@ -2,6 +2,7 @@ extends Node
 
 var add_nav_spot = PackedVector2Array()
 var add_to_no_nav_spot = PackedVector2Array()
+var units_selected = false
 var workers_selected = false
 var building_selected = false
 
@@ -32,7 +33,8 @@ func _process(delta):
 func reset_all_var():
 	add_nav_spot = PackedVector2Array()
 	add_to_no_nav_spot = PackedVector2Array()
-	workers_selected = false
+	units_selected = false
+	units_selected = false
 	building_selected = false
 	food_count = 1200
 	gold_count = 1200

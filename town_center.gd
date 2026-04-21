@@ -70,10 +70,10 @@ func _physics_process(delta):
 			queue_free()
 			removed_collision = true
 	$ProgressBar.value = health
-	if Global.workers_selected == true and health > 0 or Global.building_selected == true:
+	if Global.units_selected == true and health > 0 or Global.building_selected == true:
 		$ButtonTC.visible = false
 		$CanvasLayer.visible = false
-	if Global.workers_selected == false and health > 0:
+	if Global.units_selected == false and health > 0:
 		$ButtonTC.visible = true
 	
 	if workers_in_queue > 0 and $TimerWorker.is_stopped() and Global.population_count < Global.max_population_count:

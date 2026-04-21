@@ -49,6 +49,7 @@ func _on_button_build_tower_pressed():
 
 func _on_button_build_farm_pressed():
 	if Global.wood_count >= 50:
+		print('click1')
 		var new_building = farm.instantiate()
 		$"../../GameObjects".add_child(new_building)
 		Global.wood_count -= 50

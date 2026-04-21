@@ -36,9 +36,11 @@ func set_selected(value):
 	selected = value
 	if selected == true:
 		$Body/backSprite.visible = true
+		Global.units_selected = true
 		Global.workers_selected = true
 	else:
 		$Body/backSprite.visible = false
+		Global.units_selected = false
 		Global.workers_selected = false
 
 func set_target(value):
@@ -145,7 +147,7 @@ func _physics_process(delta):
 			target_id = Global.new_worker_target_id
 		if Global.new_worker_target_type == "tile" and job_farming_farm == false:
 			find_closest_side_of_tile()
-		selected = false
+		#selected = false
 	
 	if using_worker_tools == true:
 		speed = 0

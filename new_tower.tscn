@@ -17,8 +17,19 @@ texture = ExtResource("2_k6o06")
 visible = false
 texture = ExtResource("3_7cupq")
 
+[node name="ButtonBuildMe" type="Button" parent="." index="6"]
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_type_variation = &"FlatButton"
+
+[node name="image" parent="CanvasLayer/addWorkerButton" index="0"]
+visible = true
+
 [node name="TimerShoot" type="Timer" parent="." index="12"]
 wait_time = 2.0
 one_shot = true
 
+[connection signal="pressed" from="ButtonBuildMe" to="." method="_on_button_build_me_pressed"]
 [connection signal="timeout" from="TimerShoot" to="." method="_on_timer_shoot_timeout"]

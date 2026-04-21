@@ -20,9 +20,9 @@ func _process(delta):
 	label_gold.text = "Gold: " + str(Global.gold_count)
 	label_population.text = "Population: " + str(Global.population_count) + " / " + str(Global.max_population_count)
 
-	if Global.workers_selected == true:
+	if Global.units_selected == true and Global.workers_selected == true:
 		worker_build_options.visible = true
-	if Global.workers_selected == false:
+	if Global.units_selected == false and Global.workers_selected == false:
 		worker_build_options.visible = false
 
 	if Global.enemy_units == 0 and game_is_on == true:

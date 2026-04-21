@@ -37,6 +37,7 @@ offset_top = -43.0
 offset_right = 49.0
 offset_bottom = 43.0
 theme_type_variation = &"FlatButton"
+button_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_olf58")
