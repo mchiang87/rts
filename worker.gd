@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var timerAttack = $TimerAttack
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 @onready var progressBar = $ProgressBar
+@onready var sprite_2d = $Body/Sprite2D
 
 @export var speed = 150
 @export var laser: PackedScene
@@ -44,11 +45,13 @@ var target = null:
 func set_selected(value):
 	selected = value
 	if selected == true:
-		backSprite.visible = true
+		#backSprite.visible = true
+		sprite_2d.self_modulate = Color.AQUA
 		Global.units_selected = true
 		Global.workers_selected = true
 	else:
-		backSprite.visible = false
+		#backSprite.visible = false
+		sprite_2d.self_modulate = Color.WHITE
 		Global.units_selected = false
 		Global.workers_selected = false
 
@@ -81,7 +84,7 @@ func move_towards_target():
 			target = null
 	av = avoid()
 	velocity = (velocity + av * avoid_weight).normalized() * speed
-	
+	 
 	if nav_agent.avoidance_enabled:
 		nav_agent.set_velocity(velocity)
 	else:

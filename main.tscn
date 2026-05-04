@@ -3201,9 +3201,11 @@ position = Vector2(1088, 136)
 
 [node name="unitTypeOne" parent="GameObjects" instance=ExtResource("26_yeo8j")]
 position = Vector2(320, 144)
+input_pickable = false
 
 [node name="unitTypeTwo" parent="GameObjects" instance=ExtResource("27_4gkr8")]
 position = Vector2(328, 405)
+input_pickable = false
 
 [node name="enemyHouse" parent="GameObjects" instance=ExtResource("28_kndia")]
 position = Vector2(560, 80)

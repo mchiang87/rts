@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+
+@onready var sprite_2d = $Body/Sprite2D
+
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 @export var speed = 150
 @export var laser: PackedScene
@@ -29,10 +32,12 @@ var target = null:
 func set_selected(value):
 	selected = value
 	if selected == true:
-		$Body/backSprite.visible = true
+		#$Body/backSprite.visible = true
+		sprite_2d.self_modulate = Color.AQUA
 		Global.units_selected = true
 	else:
-		$Body/backSprite.visible = false
+		#$Body/backSprite.visible = false
+		sprite_2d.self_modulate = Color.WHITE
 		Global.units_selected = false
 
 func set_target(value):

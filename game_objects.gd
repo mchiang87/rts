@@ -5,6 +5,13 @@ var drag_start = Vector2.ZERO
 var select_rect = RectangleShape2D.new()
 var selected = []
 
+#func _ready() -> void:
+	#worker.input_pickable = true
+	#worker.input_event.connect(_on_worker_input_event)
+#
+#func _on_worker_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	#print(event)
+
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.pressed:
@@ -15,7 +22,7 @@ func _unhandled_input(event):
 					if str(item.collider) != "<Freed Object>":
 						#item.collider.turn_off_all_jobs()
 						item.collider.selected = false
-				selected = []
+				#selected = []
 			elif event.button_index == MOUSE_BUTTON_RIGHT:
 				for item in selected:
 					if str(item.collider) != "<Freed Object>":
@@ -35,6 +42,7 @@ func _unhandled_input(event):
 			q.transform = Transform2D(0, (drag_end + drag_start) / 2)
 			selected = space.intersect_shape(q)
 			for item in selected:
+				print(item)
 				item.collider.selected = true
 	
 	if event is InputEventMouseMotion and dragging:

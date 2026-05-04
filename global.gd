@@ -47,7 +47,7 @@ func reset_all_var():
 	add_nav_spot = PackedVector2Array()
 	add_to_no_nav_spot = PackedVector2Array()
 	units_selected = false
-	units_selected = false
+	workers_selected = false
 	building_selected = false
 	food_count = 1200
 	gold_count = 1200

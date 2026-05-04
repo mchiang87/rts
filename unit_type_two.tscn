@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bgcb7qr4b75gw" path="res://art/spaceshooter/PNG/playerShip1_blue.png" id="2_8r1ky"]
 
 [node name="unitTypeTwo" instance=ExtResource("1_kiv3e")]
+input_pickable = false
 speed = 75
 ranged_unit = true
 
