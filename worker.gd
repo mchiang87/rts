@@ -11,8 +11,11 @@ extends CharacterBody2D
 @onready var progressBar = $ProgressBar
 @onready var sprite_2d = $Body/Sprite2D
 
+@export var unit_name = ''
 @export var speed = 150
 @export var laser: PackedScene
+
+var damage = 1
 
 var target_radius = 10
 var av = Vector2.ZERO
@@ -67,7 +70,7 @@ func avoid():
 		result /= neighbors.size()
 	return result.normalized()
 	
-func _on_navigation_agent_2d_veloctiy_computed(safe_velocity: Vector2) -> void:
+func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
 
 func makepath():
@@ -88,7 +91,7 @@ func move_towards_target():
 	if nav_agent.avoidance_enabled:
 		nav_agent.set_velocity(velocity)
 	else:
-		_on_navigation_agent_2d_veloctiy_computed(velocity)
+		_on_navigation_agent_2d_velocity_computed(velocity)
 	
 	move_and_slide()
 	var next_path_pos = nav_agent.get_next_path_position()
@@ -191,6 +194,7 @@ func _physics_process(delta):
 				timerAttack.start()
 				var new_laser = laser.instantiate()
 				new_laser.is_good_laser = true
+				new_laser.damage = damage
 				add_sibling(new_laser)
 				new_laser.position = body.global_position
 				new_laser.look_at(target_middle_of_enemy)
@@ -274,7 +278,7 @@ func _on_area_2d_area_entered(area):
 		go_back_to_the_resources()
 	
 	if area.is_in_group("enemy_laser"):
-		health -= 1
+		health -= area.damage
 		if target_id != area.owners_id:
 			turn_off_all_jobs()
 			job_attack = true

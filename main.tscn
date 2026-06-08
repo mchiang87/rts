@@ -2788,6 +2788,33 @@ text = "Population: 0/0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="UnitDetails" type="Node2D" parent="UI"]
+
+[node name="LabelUnitName" type="Label" parent="UI/UnitDetails"]
+offset_left = 392.0
+offset_top = 520.0
+offset_right = 481.0
+offset_bottom = 543.0
+text = "Unit: "
+vertical_alignment = 1
+
+[node name="LabelUnitHealth" type="Label" parent="UI/UnitDetails"]
+offset_left = 392.0
+offset_top = 555.0
+offset_right = 481.0
+offset_bottom = 578.0
+text = "Health:"
+vertical_alignment = 1
+
+[node name="LabelUnitAttackDmg" type="Label" parent="UI/UnitDetails"]
+offset_left = 392.0
+offset_top = 587.0
+offset_right = 481.0
+offset_bottom = 610.0
+text = "Attack Damage: 
+"
+horizontal_alignment = 1
+
 [node name="MiniMap" type="Node2D" parent="UI"]
 
 [node name="OuterBox" type="Node2D" parent="UI/MiniMap"]
@@ -3195,17 +3222,22 @@ texture = ExtResource("4_k6mle")
 
 [node name="enemyTypeOne" parent="GameObjects" instance=ExtResource("24_t286c")]
 position = Vector2(1096, 424)
+unit_name = "Enemy Tank"
 
 [node name="enemyTypeTwo" parent="GameObjects" instance=ExtResource("25_7nxix")]
 position = Vector2(1088, 136)
+damage = 3
 
 [node name="unitTypeOne" parent="GameObjects" instance=ExtResource("26_yeo8j")]
 position = Vector2(320, 144)
 input_pickable = false
+health = 20
+damage = 2
 
 [node name="unitTypeTwo" parent="GameObjects" instance=ExtResource("27_4gkr8")]
 position = Vector2(328, 405)
-input_pickable = false
+health = 15
+damage = 3
 
 [node name="enemyHouse" parent="GameObjects" instance=ExtResource("28_kndia")]
 position = Vector2(560, 80)
@@ -3215,6 +3247,7 @@ position = Vector2(920, 280)
 
 [node name="enemyTower" parent="GameObjects" instance=ExtResource("30_oti36")]
 position = Vector2(800, 280)
+damage = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 324)

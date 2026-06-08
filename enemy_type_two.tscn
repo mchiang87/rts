@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://ckpvwpg7w6ju6" path="res://art/spaceshooter/PNG/playerShip1_red.png" id="3_fdfj4"]
 
 [node name="enemyTypeTwo" instance=ExtResource("1_emre8")]
+unit_name = "Enemy Shooter"
+damage = 2
 is_ranged_unit = true
 
 [node name="Sprite2D" parent="body" index="0"]

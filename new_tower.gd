@@ -1,5 +1,6 @@
 extends Area2D
 
+@export var damage = 1
 var health = 10
 var dead = false
 
@@ -119,6 +120,7 @@ func _physics_process(delta):
 				$TimerShoot.start()
 				var new_laser = laser.instantiate()
 				new_laser.is_good_laser = true
+				new_laser.damage = damage
 				add_sibling(new_laser)
 				new_laser.position = $buildingSprite/Sprite2D/turret.global_position
 				new_laser.look_at(unit.position)
@@ -164,7 +166,7 @@ func _on_area_entered(area):
 			area.get_parent().using_worker_tools = false
 			area.get_parent().find_closest_target_for_job()
 	if area.is_in_group('enemy_laser') and freeze_pos == true and built_num >= 1:
-		health -= 1
+		health -= area.damage
 		area.queue_free()
 
 func _on_button_place_pressed():

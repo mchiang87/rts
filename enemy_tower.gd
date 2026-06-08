@@ -1,8 +1,10 @@
 extends Area2D
 
+@export var cleared_block: PackedScene
+@export var damage = 1
+
 var health = 10
 var dead = false
-@export var cleared_block: PackedScene
 
 var x_value = 0
 var y_value = 0
@@ -85,6 +87,7 @@ func _physics_process(delta):
 				$TimerShoot.start()
 				var new_laser = laser.instantiate()
 				new_laser.is_good_laser = false
+				new_laser.damage = damage
 				add_sibling(new_laser)
 				new_laser.position = $buildingSprite/turret.global_position
 				new_laser.look_at(unit.position)
@@ -107,7 +110,7 @@ func _on_button_tc_pressed():
 
 func _on_area_entered(area):
 	if area.is_in_group("unit_laser"):
-		health -= 1
+		health -= area.damage
 		area.queue_free()
 
 func _on_timer_remove_nav_timeout():

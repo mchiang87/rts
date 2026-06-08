@@ -8,6 +8,7 @@
 
 [node name="enemyTower" instance=ExtResource("1_odirb")]
 script = ExtResource("2_yw67p")
+damage = 1
 laser = ExtResource("3_8eji0")
 
 [node name="Sprite2D" parent="buildingSprite" index="0"]

@@ -135,6 +135,7 @@ input_pickable = true
 motion_mode = 1
 safe_margin = 5.0
 script = ExtResource("1_67oai")
+unit_name = "Drone"
 laser = ExtResource("2_sc67v")
 
 [node name="Body" type="Node2D" parent="."]

@@ -8,6 +8,7 @@
 
 [node name="new_tower" instance=ExtResource("1_gdsi2")]
 script = ExtResource("2_iwhp5")
+damage = 1
 laser = ExtResource("3_fa7xt")
 
 [node name="Sprite2D" parent="buildingSprite" index="0"]
@@ -23,12 +24,6 @@ offset_top = -40.0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_type_variation = &"FlatButton"
-
-[node name="ButtonRemove" parent="CanvasLayer/removeButton/image" index="1"]
-visible = true
-
-[node name="addWorkerButton" parent="CanvasLayer" index="1"]
-self_modulate = Color(1, 1, 1, 1)
 
 [node name="ButtonPlace" parent="." index="10"]
 action_mode = 1

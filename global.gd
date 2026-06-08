@@ -33,6 +33,8 @@ var new_worker_target_id = null
 var enemy_units = 0
 var friendly_units = 0
 
+var selected = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#add_to_no_nav_spot.append(Vector2(5, 5))
