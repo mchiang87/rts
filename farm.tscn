@@ -45,8 +45,13 @@ texture_filter = 1
 position = Vector2(-27, 0)
 texture = ExtResource("3_s2070")
 
-[node name="CanvasLayer" parent="." index="8"]
-visible = true
-
 [node name="addWorkerButton" parent="CanvasLayer" index="1"]
 visible = false
+
+[node name="unitProgressBar" parent="CanvasLayer" index="7"]
+visible = true
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 4.0
+offset_bottom = 27.0
+show_percentage = true

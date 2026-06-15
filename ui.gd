@@ -9,6 +9,8 @@ extends CanvasLayer
 @onready var label_unit_name = $UnitDetails/LabelUnitName
 @onready var label_unit_health = $UnitDetails/LabelUnitHealth
 @onready var label_unit_attack_dmg = $UnitDetails/LabelUnitAttackDmg
+@onready var unit_group_details = $UnitGroupDetails
+@onready var label_units_in_group = $UnitGroupDetails/LabelUnitsInGroup
 @onready var worker_build_options = $workerBuildOptions
 @onready var win_screen = $WinScreen
 @onready var lose_screen = $LoseScreen
@@ -35,15 +37,20 @@ func _process(delta):
 		lose_screen.visible = true
 	
 	if Global.selected.size() > 1:
+		unit_group_details.visible = false
+		unit_details.visible = false
+		var group_details = ''
 		for item in Global.selected:
-			print(item.collider.unit_name)
+			group_details += str(item.collider.unit_name) + "|"
+		unit_group_details.visible = true
+		label_units_in_group.text = "Units in Group: |" + group_details
 	elif Global.selected.size() == 1 and str(Global.selected[0].collider) != '<Freed Object>':
-		unit_details.visible = true
+		unit_group_details.visible = false
+		unit_details.visible = false
 		label_unit_name.text = str(Global.selected[0].collider.unit_name)
 		label_unit_health.text = "Health: " + str(Global.selected[0].collider.health)
 		label_unit_attack_dmg.text = "Attack Damage: " + str(Global.selected[0].collider.damage)
-	else:
-		unit_details.visible = false
+		unit_details.visible = true
 
 func _on_timer_game_on_timeout():
 	game_is_on = true

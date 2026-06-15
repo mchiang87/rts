@@ -2815,6 +2815,17 @@ text = "Attack Damage:
 "
 horizontal_alignment = 1
 
+[node name="UnitGroupDetails" type="Node2D" parent="UI"]
+visible = false
+position = Vector2(384, 512)
+
+[node name="LabelUnitsInGroup" type="Label" parent="UI/UnitGroupDetails"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 129.0
+offset_bottom = 31.0
+text = "Units in Group: "
+
 [node name="MiniMap" type="Node2D" parent="UI"]
 
 [node name="OuterBox" type="Node2D" parent="UI/MiniMap"]
@@ -2852,7 +2863,6 @@ offset_right = 30.0
 offset_bottom = 15.0
 
 [node name="workerBuildOptions" type="Node2D" parent="UI"]
-visible = false
 script = ExtResource("1_r4tda")
 new_town_center = ExtResource("3_qvf2y")
 house = ExtResource("4_nyvhy")
@@ -2961,6 +2971,14 @@ offset_top = -32.0
 offset_right = 32.0
 offset_bottom = 32.0
 
+[node name="BuildOptionInfo" type="Node2D" parent="UI/workerBuildOptions"]
+visible = false
+position = Vector2(24, 576)
+
+[node name="LabelBuildOptionInfo" type="Label" parent="UI/workerBuildOptions/BuildOptionInfo"]
+offset_right = 216.0
+offset_bottom = 32.0
+
 [node name="WinScreen" type="Node2D" parent="UI"]
 visible = false
 
@@ -3027,7 +3045,7 @@ script = ExtResource("3_0s0a2")
 position = Vector2(414, 263)
 
 [node name="townCenter" parent="GameObjects" instance=ExtResource("5_beq23")]
-position = Vector2(160, 240)
+position = Vector2(160, 242)
 
 [node name="tree" parent="GameObjects" instance=ExtResource("14_jtlic")]
 position = Vector2(600, 160)
@@ -3247,17 +3265,28 @@ position = Vector2(920, 280)
 
 [node name="enemyTower" parent="GameObjects" instance=ExtResource("30_oti36")]
 position = Vector2(800, 280)
-damage = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 324)
 script = ExtResource("7_3do85")
 
+[connection signal="mouse_entered" from="UI/workerBuildOptions/townCenter/Sprite2D/ButtonBuildTownCenter" to="UI/workerBuildOptions" method="_on_button_build_town_center_mouse_entered"]
+[connection signal="mouse_exited" from="UI/workerBuildOptions/townCenter/Sprite2D/ButtonBuildTownCenter" to="UI/workerBuildOptions" method="_on_button_build_town_center_mouse_exited"]
 [connection signal="pressed" from="UI/workerBuildOptions/townCenter/Sprite2D/ButtonBuildTownCenter" to="UI/workerBuildOptions" method="_on_button_build_town_center_pressed"]
+[connection signal="mouse_entered" from="UI/workerBuildOptions/house/Sprite2D/ButtonBuildHouse" to="UI/workerBuildOptions" method="_on_button_build_house_mouse_entered"]
+[connection signal="mouse_exited" from="UI/workerBuildOptions/house/Sprite2D/ButtonBuildHouse" to="UI/workerBuildOptions" method="_on_button_build_house_mouse_exited"]
 [connection signal="pressed" from="UI/workerBuildOptions/house/Sprite2D/ButtonBuildHouse" to="UI/workerBuildOptions" method="_on_button_build_house_pressed"]
+[connection signal="mouse_entered" from="UI/workerBuildOptions/barracks/Sprite2D/ButtonBuildBarracks" to="UI/workerBuildOptions" method="_on_button_build_barracks_mouse_entered"]
+[connection signal="mouse_exited" from="UI/workerBuildOptions/barracks/Sprite2D/ButtonBuildBarracks" to="UI/workerBuildOptions" method="_on_button_build_barracks_mouse_exited"]
 [connection signal="pressed" from="UI/workerBuildOptions/barracks/Sprite2D/ButtonBuildBarracks" to="UI/workerBuildOptions" method="_on_button_build_barracks_pressed"]
+[connection signal="mouse_entered" from="UI/workerBuildOptions/range/Sprite2D/ButtonBuildRange" to="UI/workerBuildOptions" method="_on_button_build_range_mouse_entered"]
+[connection signal="mouse_exited" from="UI/workerBuildOptions/range/Sprite2D/ButtonBuildRange" to="UI/workerBuildOptions" method="_on_button_build_range_mouse_exited"]
 [connection signal="pressed" from="UI/workerBuildOptions/range/Sprite2D/ButtonBuildRange" to="UI/workerBuildOptions" method="_on_button_build_range_pressed"]
+[connection signal="mouse_entered" from="UI/workerBuildOptions/tower/Sprite2D/ButtonBuildTower" to="UI/workerBuildOptions" method="_on_button_build_tower_mouse_entered"]
+[connection signal="mouse_exited" from="UI/workerBuildOptions/tower/Sprite2D/ButtonBuildTower" to="UI/workerBuildOptions" method="_on_button_build_tower_mouse_exited"]
 [connection signal="pressed" from="UI/workerBuildOptions/tower/Sprite2D/ButtonBuildTower" to="UI/workerBuildOptions" method="_on_button_build_tower_pressed"]
+[connection signal="mouse_entered" from="UI/workerBuildOptions/farm/Sprite2D/ButtonBuildFarm" to="UI/workerBuildOptions" method="_on_button_build_farm_mouse_entered"]
+[connection signal="mouse_exited" from="UI/workerBuildOptions/farm/Sprite2D/ButtonBuildFarm" to="UI/workerBuildOptions" method="_on_button_build_farm_mouse_exited"]
 [connection signal="pressed" from="UI/workerBuildOptions/farm/Sprite2D/ButtonBuildFarm" to="UI/workerBuildOptions" method="_on_button_build_farm_pressed"]
 [connection signal="pressed" from="UI/WinScreen/ButtonPlayAgain" to="UI" method="_on_button_play_again_pressed"]
 [connection signal="pressed" from="UI/LoseScreen/ButtonPlayAgain" to="UI" method="_on_button_play_again_pressed"]

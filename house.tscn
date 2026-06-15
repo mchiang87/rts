@@ -12,3 +12,11 @@ texture = ExtResource("2_gdf4b")
 
 [node name="addWorkerButton" parent="CanvasLayer" index="1"]
 visible = false
+
+[node name="unitProgressBar" parent="CanvasLayer" index="7"]
+visible = true
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 4.0
+offset_bottom = 27.0
+show_percentage = true

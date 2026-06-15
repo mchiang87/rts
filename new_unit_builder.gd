@@ -17,6 +17,7 @@ var units_in_queue = 0
 @export var is_tc = false
 @export var is_barracks = false
 @export var is_range = false
+@onready var unit_progress_bar = $CanvasLayer/unitProgressBar
 
 var built_num = 0
 var freeze_pos = false
@@ -100,6 +101,14 @@ func _physics_process(delta):
 		$CanvasLayer/q3.visible = true
 		$CanvasLayer/q4.visible = true
 
+	if units_in_queue > 0:
+		unit_progress_bar.visible = true
+		unit_progress_bar.fill_mode = 1
+		unit_progress_bar.max_value = $TimerWorker.wait_time
+		unit_progress_bar.value = $TimerWorker.time_left
+	else:
+		unit_progress_bar.visible = false
+
 	var mouse_position = get_global_mouse_position()
 	if freeze_pos == false:
 		if mouse_position.x > (position.x + 60):
@@ -158,7 +167,7 @@ func _on_button_remove_pressed():
 
 func _on_button_add_worker_pressed():
 	if units_in_queue < 4 and Global.population_count < Global.max_population_count and Global.food_count >= 50:
-		$TimerWorker.start()
+		#$TimerWorker.start()
 		units_in_queue += 1
 		Global.food_count -= 50
 
@@ -177,8 +186,8 @@ func _on_timer_worker_timeout():
 	add_sibling(new_unit)
 	new_unit.position = position + Vector2(0, 60)
 	units_in_queue -= 1
-	if units_in_queue > 0 and Global.population_count < Global.max_population_count:
-		$TimerWorker.start()
+	#if units_in_queue > 0 and Global.population_count < Global.max_population_count:
+		#$TimerWorker.start()
 
 func _on_timer_remove_nav_timeout():
 	Global.new_worker_target = null

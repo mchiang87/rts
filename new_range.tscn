@@ -16,6 +16,9 @@ texture = ExtResource("2_lkcyb")
 [node name="Sprite2D" parent="CanvasLayer/addWorkerButton/image" index="2"]
 texture = ExtResource("3_url7w")
 
+[node name="q1" parent="CanvasLayer" index="2"]
+visible = true
+
 [node name="Sprite2D" parent="CanvasLayer/q1/image" index="1"]
 texture = ExtResource("3_url7w")
 
@@ -25,5 +28,11 @@ texture = ExtResource("3_url7w")
 [node name="Sprite2D" parent="CanvasLayer/q3/image" index="1"]
 texture = ExtResource("3_url7w")
 
+[node name="q4" parent="CanvasLayer" index="5"]
+visible = true
+
 [node name="Sprite2D" parent="CanvasLayer/q4/image" index="1"]
 texture = ExtResource("3_url7w")
+
+[node name="unitProgressBar" parent="CanvasLayer" index="6"]
+visible = true

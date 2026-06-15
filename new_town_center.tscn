@@ -17,6 +17,9 @@ disabled = true
 [node name="ProgressBar" parent="." index="4"]
 visible = false
 
+[node name="CanvasLayer" parent="." index="8"]
+visible = true
+
 [node name="ButtonPlace" type="Button" parent="." index="9"]
 offset_left = -40.0
 offset_top = -40.0

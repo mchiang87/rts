@@ -13,6 +13,7 @@ var new_id
 
 var workers_in_queue = 0
 @export var new_worker: PackedScene
+@onready var unit_progress_bar = $CanvasLayer/unitProgressBar
 
 func _ready():
 	var new_pos = cleared_block.instantiate()
@@ -105,12 +106,19 @@ func _physics_process(delta):
 		$CanvasLayer/q3.visible = true
 		$CanvasLayer/q4.visible = true
 
+	if workers_in_queue > 0:
+		unit_progress_bar.visible = true
+		unit_progress_bar.fill_mode = 1
+		unit_progress_bar.max_value = $TimerWorker.wait_time
+		unit_progress_bar.value = $TimerWorker.time_left
+	else:
+		unit_progress_bar.visible = false
+
 func _on_button_remove_pressed():
 	health -= 10
 
 func _on_button_add_worker_pressed():
 	if workers_in_queue < 4 and Global.population_count < Global.max_population_count and Global.food_count >= 50:
-		$TimerWorker.start()
 		workers_in_queue += 1
 		Global.food_count -= 50
 
@@ -123,8 +131,6 @@ func _on_timer_worker_timeout():
 	add_sibling(new_worker_created)
 	new_worker_created.position = position + Vector2(0, 60)
 	workers_in_queue -= 1
-	if workers_in_queue > 0 and Global.population_count < Global.max_population_count:
-		$TimerWorker.start()
 
 func _on_area_entered(area):
 	if area.is_in_group("enemy_laser"):

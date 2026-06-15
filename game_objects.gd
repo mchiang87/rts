@@ -41,7 +41,7 @@ func _unhandled_input(event):
 			q.collision_mask = 2
 			q.transform = Transform2D(0, (drag_end + drag_start) / 2)
 			Global.selected = space.intersect_shape(q)
-			print(Global.selected.size())
+			#print(Global.selected.size())
 			for item in Global.selected:
 				#print(item.collider)
 				#print(item.collider.unit_name)
