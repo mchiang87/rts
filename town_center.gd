@@ -1,6 +1,7 @@
 extends Area2D
 
 var health = 10
+var max_health = 10
 var dead = false
 @export var cleared_block: PackedScene
 
@@ -114,9 +115,6 @@ func _physics_process(delta):
 	else:
 		unit_progress_bar.visible = false
 
-func _on_button_remove_pressed():
-	health -= 10
-
 func _on_button_add_worker_pressed():
 	if workers_in_queue < 4 and Global.population_count < Global.max_population_count and Global.food_count >= 50:
 		workers_in_queue += 1
@@ -140,3 +138,8 @@ func _on_area_entered(area):
 func _on_timer_ui_on_timeout():
 	Global.building_selected = false
 	$CanvasLayer.visible = true
+
+func _on_button_remove_worker_pressed():
+	if workers_in_queue > 0:
+		workers_in_queue -= 1
+		Global.food_count += 50

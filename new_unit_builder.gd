@@ -1,6 +1,6 @@
 extends Area2D
 
-var health = 10
+
 var dead = false
 
 var x_value = 0
@@ -11,6 +11,10 @@ var create = false
 
 var units_in_queue = 0
 
+@export var health = 10
+@export var max_health = 10
+@export var energy = 0
+@export var max_energy = 0
 @export var new_worker: PackedScene
 @export var new_barracks_unit: PackedScene
 @export var new_range_unit: PackedScene
@@ -162,12 +166,8 @@ func _physics_process(delta):
 			create = true
 			fully_built_val += 1
 
-func _on_button_remove_pressed():
-	health -= 10
-
 func _on_button_add_worker_pressed():
 	if units_in_queue < 4 and Global.population_count < Global.max_population_count and Global.food_count >= 50:
-		#$TimerWorker.start()
 		units_in_queue += 1
 		Global.food_count -= 50
 
@@ -186,8 +186,6 @@ func _on_timer_worker_timeout():
 	add_sibling(new_unit)
 	new_unit.position = position + Vector2(0, 60)
 	units_in_queue -= 1
-	#if units_in_queue > 0 and Global.population_count < Global.max_population_count:
-		#$TimerWorker.start()
 
 func _on_timer_remove_nav_timeout():
 	Global.new_worker_target = null
@@ -234,3 +232,9 @@ func _on_button_place_pressed():
 		if is_range == true:
 			Global.wood_count += Global.range_wood_cost
 		queue_free()
+
+
+func _on_button_remove_worker_pressed():
+	if units_in_queue > 0:
+		units_in_queue -= 1
+		Global.food_count += 50

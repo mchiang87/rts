@@ -7,7 +7,10 @@
 [node name="unitTypeOne" instance=ExtResource("1_kmeey")]
 script = ExtResource("2_4e13y")
 unit_name = "Tank"
-health = 10
+health = 20
+max_health = 20
+energy = 0
+max_energy = 0
 damage = 1
 ranged_unit = false
 

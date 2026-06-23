@@ -45,6 +45,39 @@ texture_filter = 1
 position = Vector2(-27, 0)
 texture = ExtResource("3_s2070")
 
+[node name="removeButton" type="Node2D" parent="CanvasLayer" index="0"]
+position = Vector2(14, 509)
+
+[node name="image" type="Node2D" parent="CanvasLayer/removeButton" index="0"]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/removeButton/image" index="0"]
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0.961513, 5.1163e-05, 2.75308e-05, 1)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/removeButton/image/ColorRect" index="0"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 37.0
+offset_bottom = 8.0
+rotation = 0.785398
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/removeButton/image/ColorRect" index="1"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 26.0
+offset_right = 35.0
+offset_bottom = 30.0
+rotation = -0.785398
+color = Color(0, 0, 0, 1)
+
+[node name="ButtonRemove" type="Button" parent="CanvasLayer/removeButton/image" index="1"]
+self_modulate = Color(1, 1, 1, 0.678431)
+offset_right = 32.0
+offset_bottom = 32.0
+
 [node name="addWorkerButton" parent="CanvasLayer" index="1"]
 visible = false
 
@@ -55,3 +88,5 @@ offset_top = 0.0
 offset_right = 4.0
 offset_bottom = 27.0
 show_percentage = true
+
+[connection signal="pressed" from="CanvasLayer/removeButton/image/ButtonRemove" to="." method="_on_button_remove_pressed"]

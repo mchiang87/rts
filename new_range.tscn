@@ -6,12 +6,47 @@
 [ext_resource type="Texture2D" uid="uid://bgcb7qr4b75gw" path="res://art/spaceshooter/PNG/playerShip1_blue.png" id="3_url7w"]
 
 [node name="newRange" instance=ExtResource("1_dshav")]
+health = 10
+energy = 0
 new_range_unit = ExtResource("2_nnkfx")
 is_tc = false
 is_range = true
 
 [node name="Sprite2D" parent="buildingSprite" index="0"]
 texture = ExtResource("2_lkcyb")
+
+[node name="removeButton" type="Node2D" parent="CanvasLayer" index="0"]
+position = Vector2(14, 509)
+
+[node name="image" type="Node2D" parent="CanvasLayer/removeButton" index="0"]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/removeButton/image" index="0"]
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0.961513, 5.1163e-05, 2.75308e-05, 1)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/removeButton/image/ColorRect" index="0"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 37.0
+offset_bottom = 8.0
+rotation = 0.785398
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/removeButton/image/ColorRect" index="1"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 26.0
+offset_right = 35.0
+offset_bottom = 30.0
+rotation = -0.785398
+color = Color(0, 0, 0, 1)
+
+[node name="ButtonRemove" type="Button" parent="CanvasLayer/removeButton/image" index="1"]
+self_modulate = Color(1, 1, 1, 0.678431)
+offset_right = 32.0
+offset_bottom = 32.0
 
 [node name="Sprite2D" parent="CanvasLayer/addWorkerButton/image" index="2"]
 texture = ExtResource("3_url7w")
@@ -36,3 +71,5 @@ texture = ExtResource("3_url7w")
 
 [node name="unitProgressBar" parent="CanvasLayer" index="6"]
 visible = true
+
+[connection signal="pressed" from="CanvasLayer/removeButton/image/ButtonRemove" to="." method="_on_button_remove_pressed"]

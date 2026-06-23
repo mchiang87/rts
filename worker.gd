@@ -39,6 +39,9 @@ var able_to_shoot = true
 var new_id
 
 var health = 10
+var max_health = 10
+var energy = 0
+var max_energy = 0
 
 var selected = false:
 	set = set_selected

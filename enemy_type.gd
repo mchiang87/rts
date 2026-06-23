@@ -3,6 +3,9 @@ extends CharacterBody2D
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 @export var unit_name = ''
 @export var health = 10
+@export var max_health = 10
+@export var energy = 0
+@export var max_energy = 0
 @export var damage = 1
 @export var speed = 150
 @export var laser: PackedScene

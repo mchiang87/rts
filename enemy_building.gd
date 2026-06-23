@@ -1,6 +1,7 @@
 extends Area2D
 
 var health = 10
+var max_health = 10
 var dead = false
 @export var cleared_block: PackedScene
 

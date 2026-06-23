@@ -6,6 +6,8 @@
 [node name="unitTypeTwo" instance=ExtResource("1_kiv3e")]
 input_pickable = false
 unit_name = "Shooter"
+health = 15
+max_health = 15
 speed = 75
 ranged_unit = true
 

@@ -1,11 +1,13 @@
 extends CharacterBody2D
 
-
 @onready var sprite_2d = $Body/Sprite2D
 
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 @export var unit_name = ''
 @export var health = 10
+@export var max_health = 10
+@export var energy = 0
+@export var max_energy = 0
 @export var damage = 1
 @export var speed = 150
 @export var laser: PackedScene
@@ -13,6 +15,7 @@ extends CharacterBody2D
 
 var max_speed = 150
 var attack_range = 70
+var heal_range = 50
 
 var target_radius = 10
 var av = Vector2.ZERO
@@ -20,10 +23,13 @@ var avoid_weight = 0.1
 
 var job_attack = false
 var job_attack_unit = false
+var job_heal = false
+var job_heal_unit = false
 var target_id = null
 var target_middle_of_enemy = null
 
 var able_to_shoot = true
+var able_to_heal = true
 var new_id
 
 var selected = false:
@@ -108,6 +114,10 @@ func _physics_process(delta):
 			job_attack_unit = false
 			job_attack = true
 			target_id = Global.new_worker_target_id
+		if Global.new_worker_target_job == "heal_unit":
+			job_heal_unit = true
+			job_heal = true
+			target_id = Global.new_worker_target_id
 		if Global.new_worker_target_type == "tile":
 			find_closest_side_of_tile()
 		#selected = false
@@ -160,6 +170,7 @@ func _physics_process(delta):
 				target_id = null
 				turn_off_all_jobs()
 			speed = max_speed
+	
 	if job_attack == false and target == null:
 		var all_units = get_tree().get_nodes_in_group('enemy')
 		for unit in all_units:
@@ -171,6 +182,22 @@ func _physics_process(delta):
 					job_attack_unit = false
 				target_middle_of_enemy = unit.position
 				target = unit.position
+				
+	if job_heal == true and target != null:
+		pass
+	
+	if job_heal == false and target == null:
+		var all_units = get_tree().get_nodes_in_group('unit')
+		for unit in all_units:
+			print(unit.health)
+			print(unit.max_health)
+			var distance_to_unit = (unit.position - global_position).length()
+			if distance_to_unit <= 150 and target_id == null:
+				target_id = unit.new_id
+				job_heal = true
+				target_middle_of_enemy = unit.position
+				target = unit.position
+		
 	$ProgressBar.value = health
 	if health <= 0:
 		Global.enemy_units -= 1
@@ -211,6 +238,8 @@ func turn_off_all_jobs():
 	target_id = null
 	job_attack = false
 	job_attack_unit = false
+	job_heal = false
+	job_heal_unit = false
 	speed = max_speed
 
 func _on_timer_attack_timeout():

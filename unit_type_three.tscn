@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2nr37gh8i2lo"]
+
+[ext_resource type="PackedScene" uid="uid://cxqpyfb06td5g" path="res://worker.tscn" id="1_tuo86"]
+[ext_resource type="Script" path="res://unit_type.gd" id="2_cgao7"]
+[ext_resource type="Texture2D" uid="uid://47cosjnk7eay" path="res://art/spaceshooter/PNG/playerShip3_blue.png" id="3_1rip5"]
+[ext_resource type="Texture2D" uid="uid://bxwvb4yilyprs" path="res://art/spaceshooter/PNG/ufoGreen.png" id="4_eibvj"]
+
+[node name="unitTypeThree" instance=ExtResource("1_tuo86")]
+script = ExtResource("2_cgao7")
+unit_name = "Healer"
+health = 10
+max_health = 10
+energy = 10
+max_energy = 0
+damage = 1
+ranged_unit = false
+
+[node name="backSprite" parent="Body" index="0"]
+texture = ExtResource("3_1rip5")
+
+[node name="Sprite2D" parent="Body" index="1"]
+texture = ExtResource("4_eibvj")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 0)
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, 0)
+
+[node name="ProgressBar" parent="." index="4"]
+offset_left = -24.0
+offset_right = 23.0

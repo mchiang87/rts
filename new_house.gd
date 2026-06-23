@@ -3,6 +3,7 @@ extends Area2D
 const house_wood_cost = 50
 
 var health = 10
+var max_health = 10
 var dead = false
 
 var x_value = 0

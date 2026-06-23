@@ -5,6 +5,8 @@
 
 [node name="newTownCenter" instance=ExtResource("1_hcp1k")]
 script = ExtResource("2_rduu4")
+health = 10
+energy = 0
 new_barracks_unit = null
 new_range_unit = null
 is_tc = true
@@ -16,9 +18,6 @@ disabled = true
 
 [node name="ProgressBar" parent="." index="4"]
 visible = false
-
-[node name="CanvasLayer" parent="." index="8"]
-visible = true
 
 [node name="ButtonPlace" type="Button" parent="." index="9"]
 offset_left = -40.0
